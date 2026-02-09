@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://persona.omni.dev/slices/branding.schema.json",
+  "title": "Branding Slice",
+  "description": "Visual identity and brand assets",
+  "type": "object",
+  "properties": {
+    "colors": {
+      "type": "object",
+      "properties": {
+        "primary": {
+          "type": "string",
+          "pattern": "^#[0-9A-Fa-f]{6}$",
+          "description": "Primary brand color (hex)"
+        },
+        "accent": {
+          "type": "string",
+          "pattern": "^#[0-9A-Fa-f]{6}$",
+          "description": "Accent color (hex)"
+        },
+        "background": {
+          "type": "string",
+          "pattern": "^#[0-9A-Fa-f]{6}$",
+          "description": "Background color (hex)"
+        }
+      },
+      "description": "Brand color palette"
+    },
+    "assets": {
+      "type": "object",
+      "properties": {
+        "avatar": {
+          "type": "string",
+          "format": "uri",
+          "description": "Avatar image URL"
+        },
+        "logo": {
+          "type": "string",
+          "format": "uri",
+          "description": "Logo image URL"
+        },
+        "banner": {
+          "type": "string",
+          "format": "uri",
+          "description": "Banner image URL"
+        }
+      },
+      "description": "Visual assets"
+    },
+    "description": {
+      "type": "string",
+      "description": "Marketing description for UI display"
+    }
+  },
+  "additionalProperties": false
+}

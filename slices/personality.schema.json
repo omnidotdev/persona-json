@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://persona.omni.dev/slices/personality.schema.json",
+  "title": "Personality Slice",
+  "description": "Behavior and communication style",
+  "type": "object",
+  "properties": {
+    "systemPrompt": {
+      "type": "string",
+      "description": "Base system prompt defining core behavior"
+    },
+    "tone": {
+      "type": "string",
+      "enum": ["professional", "friendly", "playful", "formal", "casual"],
+      "description": "Default communication tone"
+    },
+    "verbosity": {
+      "type": "string",
+      "enum": ["minimal", "normal", "detailed"],
+      "default": "normal",
+      "description": "Default response length"
+    },
+    "expertise": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Areas of specialized knowledge"
+    },
+    "traits": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Personality traits (e.g., helpful, curious, empathetic)"
+    },
+    "guidelines": {
+      "type": "object",
+      "properties": {
+        "voice": {
+          "type": "string",
+          "description": "Additional instructions for voice interactions"
+        },
+        "text": {
+          "type": "string",
+          "description": "Additional instructions for text interactions"
+        }
+      },
+      "description": "Mode-specific behavior guidelines"
+    }
+  },
+  "additionalProperties": false
+}

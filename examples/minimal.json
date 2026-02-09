@@ -1,0 +1,7 @@
+{
+  "$schema": "https://persona.omni.dev/persona.schema.json",
+  "identity": {
+    "id": "example",
+    "name": "Example Entity"
+  }
+}

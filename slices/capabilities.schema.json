@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://persona.omni.dev/slices/capabilities.schema.json",
+  "title": "Capabilities Slice",
+  "description": "Permissions and tool policies",
+  "type": "object",
+  "properties": {
+    "tools": {
+      "type": "object",
+      "properties": {
+        "default": {
+          "$ref": "#/$defs/toolProfile",
+          "description": "Default tool profile for unspecified channels"
+        }
+      },
+      "additionalProperties": {
+        "$ref": "#/$defs/toolProfile"
+      },
+      "description": "Tool profiles by channel (e.g., voice, discord, slack)"
+    },
+    "permissions": {
+      "type": "object",
+      "properties": {
+        "canLearn": {
+          "type": "boolean",
+          "default": true,
+          "description": "Can learn and remember facts about users"
+        },
+        "canAccessWeb": {
+          "type": "boolean",
+          "description": "Can browse the web"
+        },
+        "canExecuteCode": {
+          "type": "boolean",
+          "description": "Can execute code"
+        },
+        "canAccessFiles": {
+          "type": "boolean",
+          "description": "Can access local files"
+        }
+      },
+      "description": "Global permission flags"
+    },
+    "integrations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "Integration type (e.g., mcp, api)"
+          },
+          "id": {
+            "type": "string",
+            "description": "Integration identifier"
+          },
+          "config": {
+            "type": "object",
+            "description": "Integration-specific configuration"
+          }
+        },
+        "required": ["type", "id"]
+      },
+      "description": "External integrations (MCP servers, APIs, etc.)"
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "toolProfile": {
+      "type": "string",
+      "enum": ["none", "minimal", "messaging", "full", "custom"],
+      "description": "Predefined tool access level"
+    }
+  }
+}

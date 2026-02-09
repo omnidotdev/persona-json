@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://persona.omni.dev/slices/identity.schema.json",
+  "title": "Identity Slice",
+  "description": "Core identity of the non-human",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]*$",
+      "description": "Unique identifier (lowercase, alphanumeric, hyphens)"
+    },
+    "name": {
+      "type": "string",
+      "description": "Display name"
+    },
+    "tagline": {
+      "type": "string",
+      "description": "Short descriptive phrase"
+    },
+    "icon": {
+      "type": "string",
+      "description": "Emoji or icon identifier"
+    },
+    "type": {
+      "type": "string",
+      "enum": ["assistant", "brand", "bot", "character", "mascot", "service"],
+      "description": "Non-human type classification"
+    },
+    "description": {
+      "type": "string",
+      "description": "Longer description of the entity"
+    },
+    "url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Primary URL for this entity"
+    }
+  },
+  "required": ["id", "name"],
+  "additionalProperties": false
+}

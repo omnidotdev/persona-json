@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://persona.omni.dev/persona.schema.json",
+  "title": "persona.json",
+  "description": "Portable non-human identity specification",
+  "type": "object",
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "Schema URL for validation"
+    },
+    "identity": {
+      "$ref": "slices/identity.schema.json",
+      "description": "Core identity (required)"
+    },
+    "voice": {
+      "$ref": "slices/voice.schema.json",
+      "description": "Voice and audio configuration"
+    },
+    "personality": {
+      "$ref": "slices/personality.schema.json",
+      "description": "Behavior and communication style"
+    },
+    "branding": {
+      "$ref": "slices/branding.schema.json",
+      "description": "Visual identity and assets"
+    },
+    "capabilities": {
+      "$ref": "slices/capabilities.schema.json",
+      "description": "Permissions and tool policies"
+    }
+  },
+  "required": ["identity"],
+  "additionalProperties": false
+}

@@ -1,0 +1,31 @@
+{
+  "$schema": "https://persona.omni.dev/persona.schema.json",
+  "identity": {
+    "id": "omni",
+    "name": "Omni",
+    "tagline": "Build the future, together",
+    "icon": "✨",
+    "type": "brand",
+    "description": "Open-source tools for the modern web",
+    "url": "https://omni.dev"
+  },
+  "personality": {
+    "tone": "friendly",
+    "verbosity": "normal",
+    "traits": ["innovative", "open", "community-driven", "quality-focused"],
+    "guidelines": {
+      "text": "Write in active voice. Be direct but warm. Avoid jargon. Emphasize openness and community."
+    }
+  },
+  "branding": {
+    "colors": {
+      "primary": "#6366F1",
+      "accent": "#8B5CF6",
+      "background": "#0F172A"
+    },
+    "assets": {
+      "logo": "https://omni.dev/logo.svg"
+    },
+    "description": "Omni builds open-source tools that empower developers and creators to build the future, together."
+  }
+}

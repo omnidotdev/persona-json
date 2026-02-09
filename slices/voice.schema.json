@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://persona.omni.dev/slices/voice.schema.json",
+  "title": "Voice Slice",
+  "description": "Voice and audio configuration for spoken interactions",
+  "type": "object",
+  "properties": {
+    "wakeWords": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1,
+      "description": "Wake words for activation (first is primary)"
+    },
+    "tts": {
+      "type": "object",
+      "properties": {
+        "provider": {
+          "type": "string",
+          "enum": ["openai", "elevenlabs", "azure", "google", "custom"],
+          "description": "TTS provider"
+        },
+        "voice": {
+          "type": "string",
+          "description": "Voice identifier (provider-specific)"
+        },
+        "speed": {
+          "type": "number",
+          "minimum": 0.25,
+          "maximum": 4.0,
+          "default": 1.0,
+          "description": "Speech rate multiplier"
+        },
+        "pitch": {
+          "type": "number",
+          "minimum": 0.5,
+          "maximum": 2.0,
+          "default": 1.0,
+          "description": "Pitch adjustment"
+        }
+      },
+      "description": "Text-to-speech configuration"
+    },
+    "stt": {
+      "type": "object",
+      "properties": {
+        "provider": {
+          "type": "string",
+          "enum": ["openai", "azure", "google", "deepgram", "custom"],
+          "description": "STT provider"
+        },
+        "model": {
+          "type": "string",
+          "description": "Model identifier (provider-specific)"
+        },
+        "language": {
+          "type": "string",
+          "description": "Primary language (BCP 47 code)"
+        }
+      },
+      "description": "Speech-to-text configuration"
+    }
+  },
+  "additionalProperties": false
+}
