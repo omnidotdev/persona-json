@@ -28,6 +28,10 @@
     "capabilities": {
       "$ref": "slices/capabilities.schema.json",
       "description": "Permissions and tool policies"
+    },
+    "knowledge": {
+      "$ref": "slices/knowledge.schema.json",
+      "description": "Domain knowledge and knowledge pack references"
     }
   },
   "required": ["identity"],

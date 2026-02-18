@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://persona.omni.dev/slices/knowledge.schema.json",
+  "title": "Knowledge Slice",
+  "description": "Domain knowledge and knowledge pack references",
+  "type": "object",
+  "properties": {
+    "inline": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/knowledgeChunk" },
+      "description": "Inline knowledge chunks"
+    },
+    "packs": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/knowledgePackRef" },
+      "description": "References to external knowledge packs"
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "knowledgeChunk": {
+      "type": "object",
+      "properties": {
+        "topic": {
+          "type": "string",
+          "description": "Topic or title for this chunk"
+        },
+        "tags": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Tags for matching this chunk to user messages"
+        },
+        "content": {
+          "type": "string",
+          "description": "Knowledge content"
+        },
+        "rules": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Behavioral rules to apply when this chunk is active"
+        },
+        "priority": {
+          "type": "string",
+          "enum": ["always", "relevant"],
+          "default": "relevant",
+          "description": "Whether this chunk is always included or only when relevant"
+        }
+      },
+      "required": ["content"],
+      "additionalProperties": false
+    },
+    "knowledgePackRef": {
+      "type": "object",
+      "properties": {
+        "ref": {
+          "type": "string",
+          "description": "Manifold path (e.g. @ns/knowledge/pack-name)"
+        },
+        "version": {
+          "type": "string",
+          "description": "Semver version constraint"
+        },
+        "priority": {
+          "type": "string",
+          "enum": ["always", "relevant"],
+          "description": "Priority override for all chunks in this pack"
+        }
+      },
+      "required": ["ref"],
+      "additionalProperties": false
+    }
+  }
+}

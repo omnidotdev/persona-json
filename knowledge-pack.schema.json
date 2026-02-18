@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://persona.omni.dev/knowledge-pack.schema.json",
+  "title": "knowledge-pack.json",
+  "description": "Publishable knowledge pack for non-human personas",
+  "type": "object",
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "const": "https://persona.omni.dev/knowledge-pack.schema.json",
+      "description": "Schema URL for validation"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+",
+      "description": "Semver version of this knowledge pack"
+    },
+    "name": {
+      "type": "string",
+      "description": "Knowledge pack name"
+    },
+    "description": {
+      "type": "string",
+      "description": "Human-readable description of this pack"
+    },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Tags for discovery and categorization"
+    },
+    "chunks": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/knowledgeChunk" },
+      "description": "Knowledge content chunks"
+    },
+    "embeddings": {
+      "type": "object",
+      "properties": {
+        "model": {
+          "type": "string",
+          "description": "Embedding model used to generate vectors"
+        },
+        "dimensions": {
+          "type": "integer",
+          "description": "Dimensionality of embedding vectors"
+        },
+        "vectors": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "array",
+            "items": { "type": "number" }
+          },
+          "description": "Mapping of chunk indices to embedding vectors"
+        }
+      },
+      "required": ["model", "dimensions", "vectors"],
+      "additionalProperties": false,
+      "description": "Pre-computed embeddings for semantic chunk selection"
+    }
+  },
+  "required": ["version", "name", "chunks"],
+  "additionalProperties": false,
+  "$defs": {
+    "knowledgeChunk": {
+      "type": "object",
+      "properties": {
+        "topic": {
+          "type": "string",
+          "description": "Topic or title for this chunk"
+        },
+        "tags": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Tags for matching this chunk to user messages"
+        },
+        "content": {
+          "type": "string",
+          "description": "Knowledge content"
+        },
+        "rules": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Behavioral rules to apply when this chunk is active"
+        },
+        "priority": {
+          "type": "string",
+          "enum": ["always", "relevant"],
+          "default": "relevant",
+          "description": "Whether this chunk is always included or only when relevant"
+        }
+      },
+      "required": ["content"],
+      "additionalProperties": false
+    }
+  }
+}
